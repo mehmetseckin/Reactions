@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Controls.Field.Name" xml:space="preserve">
-    <value>Reactions Field</value>
+    <value>Reactions</value>
   </data>
   <data name="Controls.Field.Description" xml:space="preserve">
     <value>Allows users to record emoji reactions in a text field.</value>
   </data>
   <data name="Controls.Field.Properties.Reactions.DisplayName" xml:space="preserve">
-    <value>Reactions Field</value>
+    <value>Reactions</value>
   </data>
   <data name="Controls.Field.Properties.Reactions.Description" xml:space="preserve">
     <value>The field in which the reactions will be recorded.</value>
