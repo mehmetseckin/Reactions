@@ -121,7 +121,7 @@
     <value>Reactions</value>
   </data>
   <data name="Controls.Field.Description" xml:space="preserve">
-    <value>Allows users to record emoji reactions in a text field.</value>
+    <value>Allows users to record reactions (such as emojis) in a text field.</value>
   </data>
   <data name="Controls.Field.Properties.Reactions.DisplayName" xml:space="preserve">
     <value>Reactions</value>
@@ -130,9 +130,9 @@
     <value>The field in which the reactions will be recorded.</value>
   </data>
   <data name="Controls.Field.Properties.AvailableReactions.DisplayName" xml:space="preserve">
-    <value>The available emoji reactions for this control.</value>
+    <value>Available Reactions</value>
   </data>
   <data name="Controls.Field.Properties.AvailableReactions.Description" xml:space="preserve">
-    <value>A comma-separated list of emoji reactions to be available for the users.</value>
+    <value>A comma-separated list of available reactions (e.g. "😊,😐,😟")</value>
   </data>
 </root>
