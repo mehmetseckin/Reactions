@@ -15,7 +15,7 @@ stages:
     projectPath: '$(projectDir)\$(projectFileName)'
     artifactPath: '$(projectDir)\bin\${{ parameters.configuration }}'
     solutionXmlPath: '$(projectDir)\Other\Solution.xml'
-    controlManifestXmlPath: 'src\Fields\ControlManifest.Input.xml'
+    controlManifestXmlPath: 'src\Field\ControlManifest.Input.xml'
 
   dependsOn: ${{ parameters.dependsOn }}
   jobs:
