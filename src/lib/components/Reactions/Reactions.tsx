@@ -84,7 +84,7 @@ export class Reactions extends React.Component<IReactionsProps, IReactionsState>
         let { disabled, availableReactions, reactions } = this.props;
         let { selecting } = this.state;
         return (
-            <div ref={addReactionButton => this._addReactionButtonElement = addReactionButton}>
+            <div>
                 <Stack horizontal disableShrink>
                     {reactions
                     .sort((a, b) => availableReactions.indexOf(a.emoji) > availableReactions.indexOf(b.emoji) ? 1 : -1)
@@ -105,11 +105,13 @@ export class Reactions extends React.Component<IReactionsProps, IReactionsState>
                         </Stack.Item>
                     ))}
                     <Stack.Item>
-                        <AddReactionButton
-                            disabled={disabled}
-                            checked={selecting}
-                            onClick={this.onAddReactionClick}
-                        />
+                        <div ref={addReactionButton => this._addReactionButtonElement = addReactionButton}>
+                            <AddReactionButton
+                                disabled={disabled}
+                                checked={selecting}
+                                onClick={this.onAddReactionClick}
+                            />
+                        </div>
                     </Stack.Item>
                 </Stack>
                 <ReactionsMenu

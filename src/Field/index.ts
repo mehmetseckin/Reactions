@@ -55,7 +55,7 @@ export class Field implements ComponentFramework.StandardControl<IInputs, IOutpu
 			disabled: context.mode.isControlDisabled,
 			owner: {
 				id: context.userSettings.userId,
-				name: context.userSettings.userName // TODO: get full name, title, imageUrl etc 
+				name: context.userSettings.userName // TODO: get full name, title, imageUrl etc
 			},
 			availableReactions: (context.parameters.availableReactions.raw || "").split(",").map(symbol => symbol.trim()),
 			onChange: (eventType: string, reaction: IReaction, newReactions: IReaction[]) => {

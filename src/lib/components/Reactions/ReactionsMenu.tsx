@@ -16,7 +16,7 @@ export const ReactionsMenu = (props: IReactionsMenuProps) => (
         isBeakVisible={false}
         gapSpace={10}
         target={props.target}
-        directionalHint={DirectionalHint.bottomAutoEdge}
+        directionalHint={DirectionalHint.bottomCenter}
         hidden={!props.selecting}
     >
         {props.reactions.map((reaction, index) => (
