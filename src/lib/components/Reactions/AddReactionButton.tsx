@@ -6,6 +6,7 @@ const addReactionIcon: IIconProps = { iconName: 'AddReaction' }
 const styles = {
     addReaction: {
         color: "rgba(0, 0, 0, 0.9)",
+        backgroundColor: "rgba(255, 255, 255, 1)",
         minWidth: "32px", 
         paddingLeft: "4px", 
         paddingRight: "4px",

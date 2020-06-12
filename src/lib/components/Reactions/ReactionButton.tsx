@@ -18,6 +18,7 @@ const styles: any = {
         minWidth: "32px", 
         paddingLeft: "4px", 
         paddingRight: "4px",
+        backgroundColor: "rgba(255, 255, 255, 1)",
     }
 }
 
