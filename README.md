@@ -1,5 +1,7 @@
 # Reactions
 
+[![CI Build Status](https://dev.azure.com/mtseckin/Reactions/_apis/build/status/CI?branchName=master)](https://dev.azure.com/mtseckin/Reactions/_build/latest?definitionId=8&branchName=master)
+
 A set of PCF controls that add emoji reaction capabilities to Model-Driven Apps on Power Platform.
 
 ## Features
