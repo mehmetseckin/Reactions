@@ -57,6 +57,11 @@ export class Reactions extends React.Component<IReactionsProps, IReactionsState>
         if(existingReaction) {
             if(existingReaction.owners.some(o => o.id === owner.id)) {
                 existingReaction.owners = [...existingReaction.owners.filter(o => o.id !== owner.id)];
+
+                if(existingReaction.owners.length === 0) {
+                    reactions = [...reactions.filter(r => r.emoji !== reaction.emoji)];
+                }
+
                 onChange("ms.reaction.remove", existingReaction, reactions);
             }
             else {
