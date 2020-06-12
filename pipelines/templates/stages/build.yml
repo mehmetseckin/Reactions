@@ -1,0 +1,68 @@
+parameters:
+  name: 'build'
+  configuration: 'Debug' # 'Debug' or 'Release'
+  tag: false # true if the source needs to be tagged
+  publish: false # true if artifacts need to be published
+  dependsOn: []
+
+stages:
+- stage: '${{ parameters.name }}'
+
+  variables:
+    artifactName: 'Solutions'
+    projectDir: 'src\Solutions'
+    projectFileName: 'Solutions.cdsproj'
+    projectPath: '$(projectDir)\$(projectFileName)'
+    artifactPath: '$(projectDir)\bin\${{ parameters.configuration }}'
+    solutionXmlPath: '$(projectDir)\Other\Solution.xml'
+    controlManifestXmlPath: 'src\Fields\ControlManifest.Input.xml'
+
+  dependsOn: ${{ parameters.dependsOn }}
+  jobs:
+  - job: '${{ parameters.name }}_job'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - checkout: self
+      persistCredentials: true
+    - task: Npm@1
+      displayName: "Run 'npm install'"
+      inputs:
+        command: 'install'
+        workingDir: 'src\'
+    - powershell: |
+        echo "Updating solution version: $($env:BUILD_NUMBER)"
+        $solution = [xml](gc "$($env:SOLUTION_XML_PATH)")
+        $solution.ImportExportXml.SolutionManifest.Version = "$($env:BUILD_NUMBER)";
+        $solution.Save("$($env:SOLUTION_XML_PATH)")
+      displayName: 'Update solution version'
+      env:
+        BUILD_NUMBER: $(build.buildNumber)
+        SOLUTION_XML_PATH: $(solutionXmlPath)
+    - powershell: |
+        echo "Updating control version: $($env:BUILD_NUMBER)"
+        $xml = [xml](gc "$($env:CONTROL_MANIFEST_XML_PATH)")
+        $xml.manifest.control.version = "$($env:BUILD_NUMBER)";
+        $xml.Save("$($env:CONTROL_MANIFEST_XML_PATH)")
+      displayName: 'Update control version'
+      env:
+        BUILD_NUMBER: "$(build.buildNumber)"
+        CONTROL_MANIFEST_XML_PATH: $(controlManifestXmlPath)
+    - task: VSBuild@1
+      displayName: "Build"
+      inputs:
+        solution: '$(projectPath)'
+        msbuildArgs: '/t:build /p:configuration=${{ parameters.configuration }} /restore'
+    - powershell: |
+        echo "Tagging Build: $($env:BUILD_NUMBER)"
+        git tag $env:BUILD_NUMBER
+        git push origin $env:BUILD_NUMBER
+      displayName: 'Tag the build'
+      env:
+        BUILD_NUMBER: $(build.buildNumber)
+        GIT_REDIRECT_STDERR: 2>&1
+      condition: and(succeeded(), eq(${{ parameters.tag }}, true))
+    - publish: '$(artifactPath)'
+      displayName: 'Publishing $(artifactName)'
+      artifact: '$(artifactName)'
+      condition: and(succeeded(), eq(${{ parameters.publish }}, true))

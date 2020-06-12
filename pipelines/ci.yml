@@ -1,0 +1,15 @@
+variables:
+  version: '0.1'
+
+name: $(version).$(build.buildId)
+
+trigger:
+- master
+
+pr:
+- master
+
+stages:
+- template: templates/stages/build.yml
+  parameters:
+    name: 'ci_build'
