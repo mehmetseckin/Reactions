@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="MehmetSeckin.Reactions" constructor="Field" version="0.0.1" display-name-key="Controls.Field.Name" description-key="Controls.Field.Description" control-type="standard">
+  <control namespace="MehmetSeckin.Reactions" constructor="Field" version="0.1.0" display-name-key="Controls.Field.Name" description-key="Controls.Field.Description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="reactions" display-name-key="Controls.Field.Properties.Reactions.DisplayName" description-key="Controls.Field.Properties.Reactions.Description" of-type-group="text" usage="bound" required="true" />
     <property name="availableReactions" display-name-key="Controls.Field.Properties.AvailableReactions.DisplayName" description-key="Controls.Field.Properties.AvailableReactions.Description" of-type-group="text" usage="input" required="true" />
